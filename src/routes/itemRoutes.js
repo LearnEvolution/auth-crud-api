@@ -1,33 +1,31 @@
 import express from "express";
 import authMiddleware from "../middleware/authMiddleware.js";
 import Item from "../models/Item.js";
+import {
+  createItem,
+  getItems,
+  updateStatus
+} from "../controllers/itemController.js";
 
 const router = express.Router();
 
-// 🔐 LISTAR ITENS DO USUÁRIO
-router.get("/", authMiddleware, async (req, res) => {
-  const items = await Item.find({ userId: req.userId });
-  res.json(items);
-});
+// 📋 LISTAR PEDIDOS
+router.get("/", authMiddleware, getItems);
 
-// 🔐 CRIAR ITEM
-router.post("/", authMiddleware, async (req, res) => {
-  const item = await Item.create({
-    title: req.body.title,
-    userId: req.userId
-  });
+// ➕ CRIAR PEDIDO
+router.post("/", authMiddleware, createItem);
 
-  res.status(201).json(item);
-});
+// 🔄 ATUALIZAR STATUS
+router.put("/:id", authMiddleware, updateStatus);
 
-// 🔐 DELETAR ITEM
+// ❌ DELETAR PEDIDO
 router.delete("/:id", authMiddleware, async (req, res) => {
   await Item.findOneAndDelete({
     _id: req.params.id,
     userId: req.userId
   });
 
-  res.json({ msg: "Item removido" });
+  res.json({ msg: "Pedido cancelado" });
 });
 
 export default router;
