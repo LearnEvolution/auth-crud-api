@@ -2,14 +2,27 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import privateRoutes from "./src/routes/private.js";
+
 import authRoutes from "./src/routes/authRoutes.js";
 import itemRoutes from "./src/routes/itemRoutes.js";
+import privateRoutes from "./src/routes/private.js";
 
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+/* 🔥 CORS CORRETO */
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:3000",
+      "https://auth-crud-react.vercel.app"
+    ],
+    credentials: true
+  })
+);
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -29,6 +42,3 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
-
-
-
