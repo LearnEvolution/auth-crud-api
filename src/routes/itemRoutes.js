@@ -20,12 +20,16 @@ router.put("/:id", authMiddleware, updateStatus);
 
 // ❌ DELETAR PEDIDO
 router.delete("/:id", authMiddleware, async (req, res) => {
-  await Item.findOneAndDelete({
-    _id: req.params.id,
-    userId: req.userId
-  });
+  try {
+    await Item.findOneAndDelete({
+      _id: req.params.id,
+      userId: req.userId
+    });
 
-  res.json({ msg: "Pedido cancelado" });
+    res.json({ msg: "Pedido cancelado" });
+  } catch (err) {
+    res.status(400).json({ msg: "Erro ao deletar pedido" });
+  }
 });
 
 export default router;
