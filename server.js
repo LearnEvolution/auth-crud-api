@@ -6,7 +6,7 @@ import authRoutes from "./src/routes/authRoutes.js";
 import itemRoutes from "./src/routes/itemRoutes.js";
 
 import pizzaRoutes from "./src/routes/pizzaRoutes.js";
-
+import adminRoutes from "./src/routes/adminRoutes.js";
 
 const app = express();
 
@@ -22,6 +22,8 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/items", itemRoutes);
 app.use("/api/pizzas", pizzaRoutes);
+app.use("/api/admin", adminRoutes);
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB conectado"))
