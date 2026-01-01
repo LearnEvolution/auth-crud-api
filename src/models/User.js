@@ -4,7 +4,14 @@ const userSchema = new mongoose.Schema(
   {
     name: String,
     email: { type: String, unique: true },
-    password: String
+    password: String,
+
+    // 🔐 ROLE DO USUÁRIO
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user"
+    }
   },
   { timestamps: true }
 );
