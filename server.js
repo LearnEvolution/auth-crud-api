@@ -5,6 +5,9 @@ import cors from "cors";
 import authRoutes from "./src/routes/authRoutes.js";
 import itemRoutes from "./src/routes/itemRoutes.js";
 
+import pizzaRoutes from "./src/routes/pizzaRoutes.js";
+
+
 const app = express();
 
 app.use(cors({
@@ -18,7 +21,7 @@ app.use(express.json());
 // 🔑 PADRÃO ÚNICO
 app.use("/api/auth", authRoutes);
 app.use("/api/items", itemRoutes);
-
+app.use("/api/pizzas", pizzaRoutes);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB conectado"))
