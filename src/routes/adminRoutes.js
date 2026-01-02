@@ -11,7 +11,7 @@ const router = express.Router();
 // 👥 USUÁRIOS
 router.get("/users", authMiddleware, adminMiddleware, listUsers);
 
-// 📦 PEDIDOS
+// 📦 PEDIDOS (ADMIN)
 router.get("/items", authMiddleware, adminMiddleware, listAllItems);
 
 export default router;

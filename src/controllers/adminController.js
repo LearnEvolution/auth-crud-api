@@ -16,12 +16,12 @@ export async function listUsers(req, res) {
 export async function listAllItems(req, res) {
   try {
     const items = await Item.find()
-      .populate("userId", "name email")
+      .populate("userId", "name email role")
       .sort({ createdAt: -1 });
 
     return res.json(items);
   } catch (err) {
     console.error("Erro ao listar pedidos:", err);
-    return res.status(500).json({ msg: "Erro interno no servidor" });
+    return res.status(500).json({ msg: "Erro ao listar pedidos" });
   }
 }
