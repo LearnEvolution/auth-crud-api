@@ -18,10 +18,31 @@ export async function listAllItems(req, res) {
     const items = await Item.find()
       .populate("userId", "name email role")
       .sort({ createdAt: -1 });
-
     return res.json(items);
   } catch (err) {
     console.error("Erro ao listar pedidos:", err);
     return res.status(500).json({ msg: "Erro ao listar pedidos" });
+  }
+}
+
+// 🔄 ATUALIZAR STATUS DO PEDIDO (ADMIN)
+export async function updateStatusAdmin(req, res) {
+  try {
+    const { status } = req.body;
+
+    const item = await Item.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true }
+    );
+
+    if (!item) {
+      return res.status(404).json({ msg: "Pedido não encontrado" });
+    }
+
+    res.json(item);
+  } catch (err) {
+    console.error("Erro ao atualizar status (admin):", err);
+    res.status(400).json({ msg: "Erro ao atualizar status" });
   }
 }
