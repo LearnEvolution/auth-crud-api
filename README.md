@@ -29,3 +29,4 @@ O sistema permite cadastro de usuários, login e acesso a rotas protegidas utili
 ```bash
 npm install
 npm start
+```
