@@ -1,32 +1,93 @@
-# 🔐 Auth CRUD API
+🔐 Auth API Node.js
 
-## 🚀 Descrição
-API de autenticação desenvolvida com Node.js, Express e MongoDB.
-
-O sistema permite cadastro de usuários, login e acesso a rotas protegidas utilizando autenticação com JWT.
+API REST completa com autenticação JWT, controle de acesso e CRUD de pedidos.
+Projeto desenvolvido com foco em aplicações reais e uso profissional.
 
 ---
 
-## 🔧 Tecnologias utilizadas
+🚀 Tecnologias
+
 - Node.js
 - Express
 - MongoDB (Mongoose)
-- JSON Web Token (JWT)
+- JWT (JSON Web Token)
+- Bcrypt
 
 ---
 
-## 🔐 Funcionalidades
+📦 Funcionalidades
+
 - Cadastro de usuário
-- Login com autenticação
-- Geração de token JWT
-- Proteção de rotas
-- CRUD de usuários
+- Login com geração de token JWT
+- Rotas protegidas com autenticação
+- CRUD de pedidos (itens)
+- Controle de acesso por usuário
+- Middleware de autorização
 
 ---
 
-## ▶️ Como executar o projeto
+🔐 Autenticação
 
-```bash
+A API utiliza JWT para proteger rotas privadas.
+
+Exemplo de uso no header:
+
+Authorization: Bearer SEU_TOKEN
+
+---
+
+▶️ Como rodar o projeto
+
 npm install
 npm start
-```
+
+Servidor rodando em:
+
+http://localhost:10000
+
+---
+
+⚙️ Variáveis de ambiente
+
+Crie um arquivo ".env" na raiz:
+
+MONGO_URI=sua_string_mongodb
+JWT_SECRET=seu_segredo
+
+---
+
+📌 Endpoints principais
+
+🔑 Auth
+
+- "POST /api/auth/register"
+- "POST /api/auth/login"
+
+📦 Itens (protegido)
+
+- "GET /api/items"
+- "POST /api/items"
+- "PUT /api/items/:id"
+- "DELETE /api/items/:id"
+
+---
+
+🧪 Exemplo de requisição
+
+curl -X POST http://localhost:10000/api/auth/login \
+-H "Content-Type: application/json" \
+-d '{"email":"teste@email.com","password":"123456"}'
+
+---
+
+📌 Status
+
+✔ Projeto funcional
+✔ Pronto para uso como base de sistemas reais
+
+---
+
+👨‍💻 Autor
+
+Cleber Almeida
+Backend Developer em formação (Node.js)
