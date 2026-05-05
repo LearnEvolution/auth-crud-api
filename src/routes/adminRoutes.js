@@ -1,5 +1,9 @@
+import express from "express";
+const router = express.Router();
+
 import User from "../models/User.js";
 import Item from "../models/Item.js";
+
 
 // 👥 LISTAR USUÁRIOS
 export async function listUsers(req, res) {
@@ -50,4 +54,11 @@ export async function updateStatusAdmin(req, res) {
     console.error("Erro ao atualizar status (admin):", err);
     return res.status(400).json({ msg: "Erro ao atualizar status" });
   }
+
 }
+
+router.get("/users", listUsers);
+router.get("/items", listAllItems);
+router.put("/items/:id", updateStatusAdmin);
+
+export default router;

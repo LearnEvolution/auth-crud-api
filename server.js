@@ -1,6 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
+
 
 import authRoutes from "./src/routes/authRoutes.js";
 import itemRoutes from "./src/routes/itemRoutes.js";
@@ -31,6 +34,11 @@ mongoose
 
 app.get("/", (req, res) => {
   res.json({ status: "API rodando 🚀" });
+});
+
+app.get("/teste", (req, res) => {
+  console.log("bateu na rota teste");
+  res.send("ok");
 });
 
 app.listen(10000, () => {
