@@ -19,8 +19,11 @@ async function createOrUpdateAdmin() {
     await mongoose.connect(MONGO_URL);
     console.log("✅ Conectado ao MongoDB");
 
-    const email = "admin@teste.com";
-    const senha = "123456";
+   // const email = "admin@teste.com";
+   //const senha = "123456";
+const email = process.env.ADMIN_EMAIL;
+const senha = process.env.ADMIN_PASSWORD;
+   
 
     let admin = await User.findOne({ email });
 
